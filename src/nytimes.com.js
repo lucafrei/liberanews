@@ -4,6 +4,7 @@ FIGHTERS.push([
     function unlock() {
       document.querySelector("#gateway-content").remove();
       document.querySelector("#app div div").style = "overflow: auto";
+      document.querySelector("#app > div > div:first-child").lastChild.remove();
     }
 
     function addUnlockButton(reference) {
