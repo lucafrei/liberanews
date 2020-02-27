@@ -14,6 +14,7 @@ FIGHTERS.push([
       const button = document.createElement("button");
       button.innerHTML = "Unlock article with <strong>liberanews</strong>";
       button.addEventListener("click", unlock.bind(null, lockedArticle), false);
+      button.id = "liberanews--unlock";
       button.style =
         "display: block; border: 1px solid gray; margin: 20px auto; font-size: 26px; padding: 10px 20px";
       container.insertBefore(button, lockedArticle);
@@ -48,22 +49,23 @@ FIGHTERS.push([
     }
 
     function check(timerId) {
-      console.log("liberanews: check", timerId);
+      console.log("liberanews: check for paywall");
       const articleContainer = document
         .querySelector("news-app")
         .shadowRoot.querySelector("news-article")
         .shadowRoot.querySelector(".amp-doc-host")
         .shadowRoot.querySelector(".detail-article");
-      console.log("liberanews: found", articleContainer);
-      window.clearInterval(timerId);
       const articleBody = articleContainer.querySelector(
         ".detail-article_body"
       );
       const paywall = articleContainer.querySelector(".paywall-fixed");
-
+      if (articleContainer.querySelector("#liberanews--unlock")) {
+        return;
+      }
       if (!paywall) {
         return;
       }
+      // window.clearInterval(timerId);
       console.log("liberanews: paywall found");
       addUnlockButton(articleBody);
     }
