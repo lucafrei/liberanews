@@ -12,12 +12,13 @@
       "matches": ["<all_urls>"],
       "js": [
         "init.js",
-        "lastampa.it.js",
-        "repubblica.it.js",
+        "corriere.it.js",
         "gelocal.it.js",
+        "lastampa.it.js",
         "morgenpost.de.js",
-        "theglobeandmail.com.js",
         "nytimes.com.js",
+        "repubblica.it.js",
+        "theglobeandmail.com.js",
         "run.js"
       ]
     }

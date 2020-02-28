@@ -6,19 +6,20 @@ liberanews is a browser extension to unlock online newspapers.
 liberanews supports:
 
 - :it: Italian newspapers:
-  - [La Repubblica (Rep:)](https://rep.repubblica.it/)
-  - [La Stampa](https://www.lastampa.it/)
+  - [Corriere della Sera](https://www.corriere.it/)
+  - [Gazzetta di Mantova](https://gazzettadimantova.gelocal.it/)
+  - [Gazzetta di Modena](https://gazzettadimodena.gelocal.it/)
+  - [Gazzetta di Reggio](https://gazzettadireggio.gelocal.it/)
   - [Il Corriere delle Alpi](https://corrierealpi.gelocal.it/)
   - [Il Mattino di Padova](https://mattinopadova.gelocal.it/)
   - [Il Piccolo](https://ilpiccolo.gelocal.it/)
   - [Il Tirreno](https://iltirreno.gelocal.it/)
-  - [Gazzetta di Mantova](https://gazzettadimantova.gelocal.it/)
-  - [Gazzetta di Modena](https://gazzettadimodena.gelocal.it/)
-  - [Gazzetta di Reggio](https://gazzettadireggio.gelocal.it/)
-  - [La Nuova Venezia](https://nuovavenezia.gelocal.it/)
   - [La Nuova Ferrara](https://lanuovaferrara.gelocal.it/)
+  - [La Nuova Venezia](https://nuovavenezia.gelocal.it/)
   - [La Provincia Pavese](https://laprovinciapavese.gelocal.it/)
+  - [La Repubblica (Rep:)](https://rep.repubblica.it/)
   - [La Sentinella](https://lasentinella.gelocal.it/)
+  - [La Stampa](https://www.lastampa.it/)
   - [La Tribuna Treviso](https://tribunatreviso.gelocal.it/)
   - [Messaggero Veneto](https://messaggeroveneto.gelocal.it/)
 - :de: German newspapers:
