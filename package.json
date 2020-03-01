@@ -4,6 +4,7 @@
   "description": "Free the news!",
   "main": "main.js",
   "scripts": {
+    "source": "git archive --format=zip HEAD > source.zip",
     "dist": "run-s build _dist",
     "build": "run-s _clean _build",
     "build:watch": "run-s _clean _build:watch",
