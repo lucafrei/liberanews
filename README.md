@@ -28,6 +28,7 @@ liberanews supports:
   - [The Globe And Mail](https://www.theglobeandmail.com/)
 - :us: US newspapers:
   - [The New York Times](https://www.nytimes.com/)
+  - [The Wall Street Journal](https://www.wsj.com/)
 
 # Icons
 

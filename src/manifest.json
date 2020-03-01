@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "liberanews",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "liberanews",
   "icons": {
     "64": "icons/icon-64.png"
@@ -10,17 +10,13 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": [
-        "init.js",
-        "corriere.it.js",
-        "gelocal.it.js",
-        "lastampa.it.js",
-        "morgenpost.de.js",
-        "nytimes.com.js",
-        "repubblica.it.js",
-        "theglobeandmail.com.js",
-        "run.js"
-      ]
+      "js": ["browser-polyfill.js", "content_scripts.js"]
     }
-  ]
+  ],
+
+  "permissions": ["webRequest", "webRequestBlocking", "<all_urls>"],
+
+  "background": {
+    "scripts": ["browser-polyfill.js", "background.js"]
+  }
 }
