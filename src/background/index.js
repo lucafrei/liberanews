@@ -52,5 +52,5 @@ function updateHeaders(e) {
 browser.webRequest.onBeforeSendHeaders.addListener(
   updateHeaders,
   { urls: targets },
-  ["blocking", "requestHeaders", "extraHeaders"]
+  ["blocking", "requestHeaders"]
 );
