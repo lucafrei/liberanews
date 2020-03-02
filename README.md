@@ -27,6 +27,7 @@ liberanews supports:
 - :canada: Canadian newspapers:
   - [The Globe And Mail](https://www.theglobeandmail.com/)
 - :us: US newspapers:
+  - [Financial Times](https://www.ft.com/)
   - [The New York Times](https://www.nytimes.com/)
   - [The Wall Street Journal](https://www.wsj.com/)
 
