@@ -1,4 +1,5 @@
 import corriere from "./domains/corriere.it";
+import ft from "./domains/ft.com";
 import gelocal from "./domains/gelocal.it";
 import lastampa from "./domains/lastampa.it";
 import morgenpost from "./domains/morgenpost.de";
@@ -9,6 +10,7 @@ import wsj from "./domains/wsj.com";
 
 const DOMAINS = [
   corriere,
+  ft,
   gelocal,
   lastampa,
   morgenpost,

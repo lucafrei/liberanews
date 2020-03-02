@@ -16,35 +16,39 @@
 //   ["blocking"]
 // );
 
-var targets = ["https://www.wsj.com/*"];
+var targets = ["https://www.wsj.com/*", "https://www.ft.com/*"];
 
 function updateHeaders(e) {
   let fetchAs;
+  let referer;
+  let refererSet = false;
 
   for (let header of e.requestHeaders) {
     if (header.name.toLowerCase() === "x-liberanews-fetch-as") {
       fetchAs = header.value;
     }
-  }
-
-  if (fetchAs !== undefined) {
-    let i = e.requestHeaders.length;
-    while (i--) {
-      let header = e.requestHeaders[i];
-      let name = header.name.toLowerCase();
-      switch (name) {
-        case "user-agent":
-          header.value = "Googlebot/2.1 (+http://www.google.com/bot.html)";
-          break;
-        case "cookie":
-          e.requestHeaders.splice(i, 1);
-          break;
-        case "x-liberanews-fetch-as":
-          e.requestHeaders.splice(i, 1);
-          break;
-      }
+    if (header.name.toLowerCase() === "x-liberanews-referer") {
+      referer = header.value;
     }
-    e.requestHeaders.push({ name: "x-forwarded-for", value: "66.249.66.1" });
+  }
+  let i = e.requestHeaders.length;
+  while (i--) {
+    let header = e.requestHeaders[i];
+    let name = header.name.toLowerCase();
+    if (name === "user-agent" && fetchAs !== undefined) {
+      header.value = "Googlebot/2.1 (+http://www.google.com/bot.html)";
+      e.requestHeaders.push({ name: "X-Forwarded-For", value: "66.249.66.1" });
+    } else if (name === "referer" && referer !== undefined) {
+      header.value = referer || header.value;
+      refererSet = true;
+    } else if (name === "cookie") {
+      e.requestHeaders.splice(i, 1);
+    } else if (name.startsWith("x-liberanews")) {
+      e.requestHeaders.splice(i, 1);
+    }
+  }
+  if (referer && !refererSet) {
+    e.requestHeaders.push({ name: "Referer", value: referer });
   }
   return { requestHeaders: e.requestHeaders };
 }
@@ -52,5 +56,8 @@ function updateHeaders(e) {
 browser.webRequest.onBeforeSendHeaders.addListener(
   updateHeaders,
   { urls: targets },
-  ["blocking", "requestHeaders"]
+  // see https://developer.chrome.com/extensions/webRequest#implementation
+  navigator.userAgent.includes("Firefox")
+    ? ["blocking", "requestHeaders"]
+    : ["blocking", "requestHeaders", "extraHeaders"]
 );
