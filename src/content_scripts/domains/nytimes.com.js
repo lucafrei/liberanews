@@ -2,7 +2,9 @@ const domain = "nytimes.com";
 
 function unlock() {
   document.querySelector("#gateway-content").remove();
-  document.querySelector("#app div div").style = "overflow: auto";
+  document.querySelector("#site-content").style = "";
+  document.querySelector("#app > div > div").style =
+    "position: relative; overflow: auto";
   document.querySelector("#app > div > div:first-child").lastChild.remove();
 }
 
