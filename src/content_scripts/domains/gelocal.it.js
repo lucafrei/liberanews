@@ -5,7 +5,7 @@ function unlock() {
     const newArticle = await fetchArticle();
     replace(newArticle);
     removeBanner();
-  }, 2000);
+  }, 1000);
 }
 
 function addUnlockButton() {
@@ -25,7 +25,7 @@ async function fetchArticle() {
   const domparser = new DOMParser();
   const doc = domparser.parseFromString(text, "text/html");
   const article = doc.querySelector("#article-body");
-  article.attributes.removeNamedItem("hidden");
+  article.style.visibility = "visible";
   const note = document.createElement("div");
   note.innerHTML = `Article unlocked with <a href="https://github.com/lucafrei/liberanews" target="_blank"><code>liberanews</code></a>`;
   article.appendChild(note);
@@ -43,15 +43,19 @@ function removeBanner() {
   banner.remove();
 }
 
-function run() {
-  const articleBody = document.getElementById("article-body");
-  const phPaywall = document.getElementById("ph-paywall");
+function check(timerId) {
+  const phPaywall = document.querySelector("#paywall-banner");
 
   if (!phPaywall) {
     return;
   }
+  window.clearInterval(timerId);
   console.log("liberanews: paywall found");
   addUnlockButton();
+}
+
+function run() {
+  let timerId = window.setInterval(() => check(timerId), 1000);
 }
 
 export default { domain, run };
