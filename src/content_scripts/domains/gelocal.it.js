@@ -9,7 +9,7 @@ function unlock() {
 }
 
 function addUnlockButton() {
-  const reference = document.getElementById("article-body");
+  const reference = document.querySelector("#paywall-banner");
   const container = reference.parentElement;
   const button = document.createElement("button");
   button.innerHTML = "Unlock article with <strong>liberanews</strong>";
