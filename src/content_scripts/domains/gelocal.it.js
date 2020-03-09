@@ -9,7 +9,7 @@ function unlock() {
 }
 
 function addUnlockButton() {
-  const reference = document.querySelector("#paywall-banner");
+  const reference = document.querySelector("#ph-paywall:first-child");
   const container = reference.parentElement;
   const button = document.createElement("button");
   button.innerHTML = "Unlock article with <strong>liberanews</strong>";
@@ -26,6 +26,9 @@ async function fetchArticle() {
   const doc = domparser.parseFromString(text, "text/html");
   const article = doc.querySelector("#article-body");
   article.style.visibility = "visible";
+  if (article.attributes.getNamedItem("hidden")) {
+    article.attributes.removeNamedItem("hidden");
+  }
   const note = document.createElement("div");
   note.innerHTML = `Article unlocked with <a href="https://github.com/lucafrei/liberanews" target="_blank"><code>liberanews</code></a>`;
   article.appendChild(note);
@@ -44,7 +47,7 @@ function removeBanner() {
 }
 
 function check(timerId) {
-  const phPaywall = document.querySelector("#paywall-banner");
+  const phPaywall = document.querySelector("#ph-paywall");
 
   if (!phPaywall) {
     return;
