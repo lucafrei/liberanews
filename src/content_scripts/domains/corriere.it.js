@@ -22,11 +22,22 @@ function addUnlockButton(reference) {
 async function fetchArticle() {
   let url = document.location.origin + document.location.pathname;
   url = url.replace("_preview.shtml", ".shtml");
-  const req = await fetch(url, { credentials: "omit" });
-  const text = await req.text();
+  const resp = await fetch(url, { credentials: "omit" });
+  const bytes = await resp.arrayBuffer();
+  const decoder = new TextDecoder("iso-8859-1");
+  const text = decoder.decode(bytes);
   const domparser = new DOMParser();
   const doc = domparser.parseFromString(text, "text/html");
   const article = doc.querySelector("#content-to-read");
+
+  // Replace header image
+  const headerImage = article.querySelector(
+    ".container-body-article .rs_preserve.rs_skip"
+  );
+  headerImage
+    .querySelector("img.lazy")
+    .replaceWith(headerImage.querySelector("noscript img"));
+
   const note = document.createElement("div");
   note.innerHTML = `Article unlocked with <a href="https://github.com/lucafrei/liberanews" target="_blank"><code>liberanews</code></a>`;
   article.appendChild(note);
