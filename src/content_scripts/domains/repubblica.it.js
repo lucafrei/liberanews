@@ -1,20 +1,18 @@
+import { createUnlockButton } from "../components";
+
 const domain = "repubblica.it";
+
 function unlock(lockedArticle) {
   window.setTimeout(async () => {
     const newArticle = await fetchArticle();
     replace(lockedArticle, newArticle);
     //removeBanner();
-  }, 2000);
+  }, 500);
 }
 
 function addUnlockButton(lockedArticle) {
   const container = lockedArticle.parentElement;
-  const button = document.createElement("button");
-  button.innerHTML = "Unlock article with <strong>liberanews</strong>";
-  button.addEventListener("click", unlock.bind(null, lockedArticle), false);
-  button.id = "liberanews--unlock";
-  button.style =
-    "display: block; border: 1px solid gray; margin: 20px auto; font-size: 26px; padding: 10px 20px";
+  const button = createUnlockButton(unlock.bind(null, lockedArticle));
   container.insertBefore(button, lockedArticle);
 }
 

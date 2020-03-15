@@ -7,7 +7,7 @@ function unlock() {
     const newArticle = await fetchArticle();
     replace(newArticle);
     removeBanner();
-  }, 2000);
+  }, 500);
 }
 
 function addUnlockButton() {

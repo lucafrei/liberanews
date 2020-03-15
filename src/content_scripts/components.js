@@ -2,6 +2,7 @@ export function createUnlockButton(cb) {
   const button = document.createElement("button");
   const img = document.createElement("img");
   const text = document.createElement("span");
+  button.id = "liberanews--unlock";
   button.appendChild(img);
   button.appendChild(text);
   button.style = [
