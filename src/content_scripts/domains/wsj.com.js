@@ -1,3 +1,5 @@
+import { createUnlockButton } from "../components";
+
 const domain = "wsj.com";
 
 async function unlock() {
@@ -8,11 +10,7 @@ async function unlock() {
 
 function addUnlockButton(reference) {
   const container = reference.parentElement;
-  const button = document.createElement("button");
-  button.innerHTML = "Unlock article with <strong>liberanews</strong>";
-  button.addEventListener("click", unlock, false);
-  button.style =
-    "display: block; border: 1px solid gray; margin: 20px auto; font-size: 26px; padding: 10px 20px";
+  const button = createUnlockButton(unlock);
   container.insertBefore(button, reference);
 }
 

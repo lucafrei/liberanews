@@ -18,5 +18,7 @@
 
   "background": {
     "scripts": ["browser-polyfill.js", "background.js"]
-  }
+  },
+
+  "web_accessible_resources": ["*.png", "*.svg"]
 }

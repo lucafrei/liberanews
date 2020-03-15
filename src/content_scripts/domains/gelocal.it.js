@@ -1,3 +1,5 @@
+import { createUnlockButton } from "../components";
+
 const domain = "gelocal.it";
 
 function unlock() {
@@ -5,17 +7,13 @@ function unlock() {
     const newArticle = await fetchArticle();
     replace(newArticle);
     removeBanner();
-  }, 1000);
+  }, 500);
 }
 
 function addUnlockButton() {
   const reference = document.querySelector("#ph-paywall:first-child");
   const container = reference.parentElement;
-  const button = document.createElement("button");
-  button.innerHTML = "Unlock article with <strong>liberanews</strong>";
-  button.addEventListener("click", unlock, false);
-  button.style =
-    "display: block; margin: 20px auto 80px; font-size: 26px; padding: 10px 20px";
+  const button = createUnlockButton(unlock);
   container.insertBefore(button, reference);
 }
 

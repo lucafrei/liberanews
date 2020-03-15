@@ -1,3 +1,5 @@
+import { createUnlockButton } from "../components";
+
 const domain = "theglobeandmail.com";
 
 function unlock(article) {
@@ -9,16 +11,12 @@ function unlock(article) {
     document.querySelector(".c-keytar-header").remove();
     document.querySelector(".c-keytar-content").remove();
     document.querySelector(".c-keytar-footer").remove();
-  }, 2000);
+  }, 500);
 }
 
 function addUnlockButton(article) {
   const container = article.parentElement;
-  const button = document.createElement("button");
-  button.innerHTML = "Unlock article with <strong>liberanews</strong>";
-  button.addEventListener("click", unlock.bind(null, article), false);
-  button.style =
-    "display: block; margin: 20px auto; font-size: 26px; padding: 10px 20px";
+  const button = createUnlockButton(unlock.bind(null, article));
   container.insertBefore(button, article);
 }
 

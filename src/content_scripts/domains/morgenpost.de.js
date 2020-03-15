@@ -1,3 +1,5 @@
+import { createUnlockButton } from "../components";
+
 const domain = "morgenpost.de";
 
 function unlock(lockedArticle) {
@@ -5,16 +7,12 @@ function unlock(lockedArticle) {
     const newArticle = await fetchArticle();
     replace(lockedArticle, newArticle);
     removeBanner();
-  }, 2000);
+  }, 500);
 }
 
 function addUnlockButton(reference) {
   const container = reference.parentElement;
-  const button = document.createElement("button");
-  button.innerHTML = "Unlock article with <strong>liberanews</strong>";
-  button.addEventListener("click", unlock.bind(null, reference), false);
-  button.style =
-    "display: block; margin: 20px auto; font-size: 26px; padding: 10px 20px";
+  const button = createUnlockButton(unlock.bind(null, reference));
   container.insertBefore(button, reference);
 }
 
