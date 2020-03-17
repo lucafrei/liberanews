@@ -32,9 +32,10 @@ async function fetchArticle() {
   const headerImage = article.querySelector(
     ".container-body-article .rs_preserve.rs_skip"
   );
-  headerImage
-    .querySelector("img.lazy")
-    .replaceWith(headerImage.querySelector("noscript img"));
+  const lazyImage = headerImage.querySelector("img.lazy");
+  if (lazyImage) {
+    lazyImage.replaceWith(headerImage.querySelector("noscript img"));
+  }
 
   const note = document.createElement("div");
   note.innerHTML = `Article unlocked with <a href="https://github.com/lucafrei/liberanews" target="_blank"><code>liberanews</code></a>`;
