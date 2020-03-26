@@ -9,7 +9,8 @@ export function createUnlockButton(callback) {
         throw Error("Cannot unlock");
       }
     } catch (e) {
-      console.log("liberanews: error", error);
+      console.trace(e);
+      console.log("liberanews: error", e);
       error.innerHTML = `<strong>Liberanews error</strong><br/> Try again, if it doesn't work contact me on <a href='https://twitter.com/FreiburgLuca' target='_blank'>Twitter</a>, <a href='https://github.com/lucafrei/liberanews' target='_blank'>GitHub</a>, or <a href='mailto:c.harlock@yandex.com?subject=Liberanews%20Error&body=URL:%20${document.location.href}'>send me an email</a>.`;
       error.style.display = "block";
     }

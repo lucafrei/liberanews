@@ -3,10 +3,14 @@ import { createUnlockButton } from "../components";
 const domain = "corriere.it";
 
 async function unlock(article) {
+  const newArticle = await fetchArticle();
+  const toReplace = document.querySelector("html");
+  if (!toReplace) {
+    throw new Error("Cannot replace content");
+  }
   document.querySelector("#pwl_overlay").remove();
   document.querySelector("#pwl_vt").remove();
-  const newArticle = await fetchArticle();
-  document.querySelector("#content-to-read").replaceWith(newArticle);
+  toReplace.replaceWith(newArticle);
   return true;
 }
 
@@ -25,20 +29,25 @@ async function fetchArticle() {
   const text = decoder.decode(bytes);
   const domparser = new DOMParser();
   const doc = domparser.parseFromString(text, "text/html");
-  const article = doc.querySelector("#content-to-read");
+  const article = doc.querySelector("section.body-article");
 
   // Replace header image
   const headerImage = article.querySelector(
     ".container-body-article .rs_preserve.rs_skip"
   );
-  const lazyImage = headerImage.querySelector("img.lazy");
+  const lazyImage = headerImage && headerImage.querySelector("img.lazy");
   if (lazyImage) {
     lazyImage.replaceWith(headerImage.querySelector("noscript img"));
+  }
+
+  if (article.querySelector(".bck-media-list-group")) {
+    article.querySelector(".bck-media-list-group").remove();
   }
 
   const note = document.createElement("div");
   note.innerHTML = `Article unlocked with <a href="https://github.com/lucafrei/liberanews" target="_blank"><code>liberanews</code></a>`;
   article.appendChild(note);
+  return doc.querySelector("html");
   return article;
 }
 
