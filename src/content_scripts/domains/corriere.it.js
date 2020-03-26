@@ -29,26 +29,12 @@ async function fetchArticle() {
   const text = decoder.decode(bytes);
   const domparser = new DOMParser();
   const doc = domparser.parseFromString(text, "text/html");
-  const article = doc.querySelector("section.body-article");
-
-  // Replace header image
-  const headerImage = article.querySelector(
-    ".container-body-article .rs_preserve.rs_skip"
-  );
-  const lazyImage = headerImage && headerImage.querySelector("img.lazy");
-  if (lazyImage) {
-    lazyImage.replaceWith(headerImage.querySelector("noscript img"));
-  }
-
-  if (article.querySelector(".bck-media-list-group")) {
-    article.querySelector(".bck-media-list-group").remove();
-  }
-
-  const note = document.createElement("div");
-  note.innerHTML = `Article unlocked with <a href="https://github.com/lucafrei/liberanews" target="_blank"><code>liberanews</code></a>`;
-  article.appendChild(note);
+  doc
+    .querySelectorAll("img.lazy")
+    .forEach(elem =>
+      elem.replaceWith(elem.parentElement.querySelector("noscript img"))
+    );
   return doc.querySelector("html");
-  return article;
 }
 
 function check(timerId) {
