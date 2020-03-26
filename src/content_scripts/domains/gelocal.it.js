@@ -2,12 +2,11 @@ import { createUnlockButton } from "../components";
 
 const domain = "gelocal.it";
 
-function unlock() {
-  window.setTimeout(async () => {
-    const newArticle = await fetchArticle();
-    replace(newArticle);
-    removeBanner();
-  }, 500);
+async function unlock() {
+  const newArticle = await fetchArticle();
+  replace(newArticle);
+  removeBanner();
+  return true;
 }
 
 function addUnlockButton() {

@@ -2,12 +2,13 @@ import { createUnlockButton } from "../components";
 
 const domain = "nytimes.com";
 
-function unlock() {
+async function unlock() {
   document.querySelector("#gateway-content").remove();
   document.querySelector("#site-content").style = "";
   document.querySelector("#app > div > div").style =
     "position: relative; overflow: auto";
   document.querySelector("#app > div > div:first-child").lastChild.remove();
+  return true;
 }
 
 function addUnlockButton(reference) {

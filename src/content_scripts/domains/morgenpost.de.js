@@ -2,12 +2,11 @@ import { createUnlockButton } from "../components";
 
 const domain = "morgenpost.de";
 
-function unlock(lockedArticle) {
-  window.setTimeout(async () => {
-    const newArticle = await fetchArticle();
-    replace(lockedArticle, newArticle);
-    removeBanner();
-  }, 500);
+async function unlock(lockedArticle) {
+  const article = await fetchArticle();
+  replace(lockedArticle, article);
+  removeBanner();
+  return true;
 }
 
 function addUnlockButton(reference) {

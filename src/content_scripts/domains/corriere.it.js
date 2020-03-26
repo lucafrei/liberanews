@@ -2,13 +2,12 @@ import { createUnlockButton } from "../components";
 
 const domain = "corriere.it";
 
-function unlock(article) {
-  window.setTimeout(async () => {
-    document.querySelector("#pwl_overlay").remove();
-    document.querySelector("#pwl_vt").remove();
-    const newArticle = await fetchArticle();
-    document.querySelector("#content-to-read").replaceWith(newArticle);
-  }, 500);
+async function unlock(article) {
+  document.querySelector("#pwl_overlay").remove();
+  document.querySelector("#pwl_vt").remove();
+  const newArticle = await fetchArticle();
+  document.querySelector("#content-to-read").replaceWith(newArticle);
+  return true;
 }
 
 function addUnlockButton(reference) {

@@ -2,12 +2,10 @@ import { createUnlockButton } from "../components";
 
 const domain = "repubblica.it";
 
-function unlock(lockedArticle) {
-  window.setTimeout(async () => {
-    const newArticle = await fetchArticle();
-    replace(lockedArticle, newArticle);
-    //removeBanner();
-  }, 500);
+async function unlock(lockedArticle) {
+  const newArticle = await fetchArticle();
+  replace(lockedArticle, newArticle);
+  return true;
 }
 
 function addUnlockButton(lockedArticle) {

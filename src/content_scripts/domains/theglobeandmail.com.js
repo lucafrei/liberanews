@@ -2,8 +2,7 @@ import { createUnlockButton } from "../components";
 
 const domain = "theglobeandmail.com";
 
-function unlock(article) {
-  window.setTimeout(async () => {
+async function unlock(article) {
     const newArticle = await fetchArticle();
     article.replaceWith(newArticle);
     document.getElementsByTagName("html")[0].classList.remove("keytar-enabled");
@@ -11,7 +10,7 @@ function unlock(article) {
     document.querySelector(".c-keytar-header").remove();
     document.querySelector(".c-keytar-content").remove();
     document.querySelector(".c-keytar-footer").remove();
-  }, 500);
+  return true;
 }
 
 function addUnlockButton(article) {

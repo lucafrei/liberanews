@@ -1,11 +1,22 @@
+import { sleep } from "../utils";
 import { createUnlockButton } from "../components";
 
 const domain = "wsj.com";
+const TOTALLY_ARBITRARY_ATTEMPTS = 20;
+const TOTALLY_ARBITRARY_SLEEP_TIME = 100;
 
 async function unlock() {
-  const article = await fetchArticle();
-  document.querySelector(".wsj-snippet-body").replaceWith(article);
-  document.querySelector(".wsj-snippet-login").remove();
+  let article;
+  for (let i = 0; i < TOTALLY_ARBITRARY_ATTEMPTS; i++) {
+    console.log("liberanews: fetch article, attempt", i);
+    article = await fetchArticle();
+    if (article) {
+      document.querySelector(".wsj-snippet-body").replaceWith(article);
+      document.querySelector(".wsj-snippet-login").remove();
+      return true;
+    }
+    await sleep(TOTALLY_ARBITRARY_SLEEP_TIME);
+  }
 }
 
 function addUnlockButton(reference) {
@@ -23,6 +34,9 @@ async function fetchArticle() {
   const domparser = new DOMParser();
   const doc = domparser.parseFromString(text, "text/html");
   const article = doc.querySelector(".article-content");
+  if (!article) {
+    return;
+  }
   const note = document.createElement("div");
   note.innerHTML = `Article unlocked with <a href="https://github.com/lucafrei/liberanews" target="_blank"><code>liberanews</code></a>`;
   article.appendChild(note);

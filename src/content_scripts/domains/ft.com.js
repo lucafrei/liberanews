@@ -5,6 +5,7 @@ const domain = "ft.com";
 async function unlock() {
   const article = await fetchArticle();
   document.querySelector("html").replaceWith(article);
+  return true;
 }
 
 function addUnlockButton(reference) {
