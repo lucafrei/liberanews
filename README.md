@@ -35,7 +35,7 @@ liberanews supports:
 
 The Chrome Web Store doesn't like this extension, so if you want to install it you have to do it manually. Note that the extension will **not** update automatically. You'll have to repeat the process every time a new version is released. [Follow me on Twitter](https://twitter.com/FreiburgLuca) to stay up to date.
 
-1. Download the [latest version of the extension](./web-ext-artifacts/liberanews-0.0.14.zip).
+1. Download the [latest version of the extension](./web-ext-artifacts/liberanews-0.0.15.zip).
 2. Unzip it.
 3. Search "how to install an unpacked extension" on your [favorite search engine](https://duckduckgo.com/) and follow the instructions.
 4. ...
