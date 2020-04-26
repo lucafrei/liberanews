@@ -3,13 +3,12 @@ import { createUnlockButton } from "../components";
 const domain = "theglobeandmail.com";
 
 async function unlock(article) {
-    const newArticle = await fetchArticle();
-    article.replaceWith(newArticle);
-    document.getElementsByTagName("html")[0].classList.remove("keytar-enabled");
-    document.querySelector("#teaser-container").remove();
-    document.querySelector(".c-keytar-header").remove();
-    document.querySelector(".c-keytar-content").remove();
-    document.querySelector(".c-keytar-footer").remove();
+  const newArticle = await fetchArticle();
+  article.replaceWith(newArticle);
+  document.getElementsByTagName("html")[0].classList.remove("keytar-enabled");
+  document
+    .querySelectorAll(".hide-paragraph")
+    .forEach(elem => elem.classList.remove("hide-paragraph"));
   return true;
 }
 
